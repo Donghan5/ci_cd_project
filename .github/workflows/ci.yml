@@ -1,0 +1,25 @@
+# Workflow name
+name: Basic Node.js CI
+
+# Trigger the workflow on push to main branch
+on:
+  push:
+    branches: [ main ]
+
+# Define the jobs to run in the workflow
+jobs:
+  build-and-test:  # Job name (id) --> freely chosen
+    runs-on: ubuntu-latest # Environment to run the job
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3  # Action to checkout the repository code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Action to set up Node.js environment
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm install  # Command to install project dependencies
+
+      - name: Run Tests
+        run: npm test  # Command to run the test suite
